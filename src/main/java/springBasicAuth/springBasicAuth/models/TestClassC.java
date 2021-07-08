@@ -1,4 +1,4 @@
-package springBasicAuth.springBasicAuth.model;
+package springBasicAuth.springBasicAuth.models;
 
 public class TestClassC {
     private int count = 100;

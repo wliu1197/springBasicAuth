@@ -1,4 +1,4 @@
-package springBasicAuth.springBasicAuth.model;
+package springBasicAuth.springBasicAuth.models;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

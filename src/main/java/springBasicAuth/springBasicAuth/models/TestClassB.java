@@ -1,4 +1,4 @@
-package springBasicAuth.springBasicAuth.model;
+package springBasicAuth.springBasicAuth.models;
 
 import org.springframework.stereotype.Component;
 
