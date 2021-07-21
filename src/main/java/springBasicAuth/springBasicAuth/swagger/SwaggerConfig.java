@@ -1,8 +1,10 @@
 package springBasicAuth.springBasicAuth.swagger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
@@ -16,9 +18,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import javax.servlet.ServletContext;
 import java.util.Collections;
 
-@EnableSwagger2
+
+
 @Configuration
 public class SwaggerConfig {
+
     private final ServletContext servletContext;
 
     @Autowired
@@ -30,20 +34,21 @@ public class SwaggerConfig {
     public Docket swaggerConfigs(){
         System.out.println("here runnnnnnnnn");
 
-        /*return new Docket(DocumentationType.SWAGGER_2)
+        return new Docket(DocumentationType.SWAGGER_2)
                 .host("http://localhost:9091")
                 .pathProvider(new RelativePathProvider(servletContext) {
                     @Override
                     public String getApplicationBasePath() {
                         return "/myapi";
                     }
-                }).apiInfo(apiDetails());*/
-        return new Docket(DocumentationType.SWAGGER_2)
+                }).apiInfo(apiDetails()).select().paths(PathSelectors.ant("/rest-api/*"))
+                .apis(RequestHandlerSelectors.basePackage("springBasicAuth.springBasicAuth")).build();
+                /*return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .paths(PathSelectors.ant("/rest-api/*"))
                 .apis(RequestHandlerSelectors.basePackage("springBasicAuth.springBasicAuth"))
                 .build()
-                .apiInfo(apiDetails());
+                .apiInfo(apiDetails());*/
     }
 
     @Bean
@@ -55,7 +60,7 @@ public class SwaggerConfig {
     private ApiInfo apiDetails(){
         return new ApiInfo(
                 "Test rest api",
-                "Basic Auth example with swagger api",
+                "Basic Auth example with swagger api, Username and password wen:comein22",
                 "1.0",
                 "Free to use",
                 new springfox.documentation.service.Contact("wen","",""),

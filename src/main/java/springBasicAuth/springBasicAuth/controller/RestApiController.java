@@ -17,21 +17,18 @@ import java.util.Map;
 @RestController
 @RequestMapping("/rest-api")
 public class RestApiController {
-
-
     @Autowired
     private TestClassA testClassA;
     @Autowired
     private TestClassC testClassC;
     ObjectMapper mapper = new ObjectMapper();
-    @ApiOperation(value = "Say Hello!", response = Iterable.class)
-    /*@ApiResponses(value = {
+
+    @ApiOperation(value = "Say Hello!")
+    @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success|OK", response = HelloExampleResponse.class),
             @ApiResponse(code = 401, message = "not authorized!"),
             @ApiResponse(code = 403, message = "forbidden!!!"),
-            @ApiResponse(code = 404, message = "not found!!!") })*/
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Success|OK", response = HelloExampleResponse.class)
+            @ApiResponse(code = 404, message = "not found!!!")
     })
     @GetMapping("/hello")
     @ResponseStatus(value = HttpStatus.OK)
@@ -54,4 +51,5 @@ public class RestApiController {
         String json =  "{\"message\": \"" + payloadMap.get("message") + "\"}";
         return mapper.readTree(json);
     }
+
 }
